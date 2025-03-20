@@ -24,71 +24,34 @@ import android.graphics.drawable.*;
 public class MainActivity extends Activity 
 {
 	Button but_up;
-	String o_dir, old_dir;
+	TextView dir_tv;
+	ListView lvSimple;
+	String o_dir;
 	File dir;
 	String[] files;
-	String[] files2;
 	String NSDir;
-	File ndir;
-	// имена атрибутов для Map 
-	final String ATTRIBUTE_NAME_TEXT = "text"; 
-	final String ATTRIBUTE_NAME_IMAGE = "image"; 
-	ListView lvSimple;
+	private FileShooser fs;
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+		fs= new FileShooser(this);
 		but_up = findViewById(R.id.up);
-		Bundle arguments = getIntent().getExtras();
-		if(arguments!=null){
-			NSDir= arguments.getString("file");
-			old_dir= arguments.getString("dir");
-			o_dir= old_dir+ "/"+ NSDir;}
-		else{o_dir= Environment.getExternalStorageDirectory().getPath().toString();
-			but_up.setVisibility(View.INVISIBLE);}
+		dir_tv = findViewById(R.id.nfold);
+		o_dir= Environment.getExternalStorageDirectory().getPath();
+		but_up.setVisibility(View.INVISIBLE);
 		dir= new File(o_dir);
-		TextView dir_tv = findViewById(R.id.nfold);
-		
-		
-		//if (o_dir==Environment.getExternalStorageDirectory().getPath().toString()){
-			
 		
 		dir_tv.setText(o_dir);
-		int file_img=R.drawable.file;
-		int fold_img= R.drawable.folder;
-		int img;
-		
-		//o_dir= Environment.getExternalStorageDirectory().getPath().toString();
-		
 		files = dir.list();
 		
         if (files != null)
-		{ArrayList<Map<String, Object>> data = new ArrayList<Map<String, Object>>( 
-				files.length); 
-			Map<String, Object> m; 
-			for (int i = 0; i < files.length; i++) { 
-				m = new HashMap<String, Object>(); 
-				m.put(ATTRIBUTE_NAME_TEXT, files[i]);
-				ndir= new File(o_dir+ "/"+files[i]);
-				if (ndir.isDirectory()){
-					img= fold_img;}
-					else{img=file_img;}
-				m.put(ATTRIBUTE_NAME_IMAGE, img); 
-				data.add(m);
-				}
-		
-		// массив имен атрибутов, из которых будут читаться данные 
-		String[] from = { ATTRIBUTE_NAME_TEXT, ATTRIBUTE_NAME_IMAGE }; 
-		// массив ID View-компонентов, в которые будут вставлять данные 
-		int[] to = { R.id.namef, R.id.ico }; 
-// создаем адаптер 
-		SimpleAdapter sAdapter = new SimpleAdapter(this, data,
-									R.layout.itemdir, from, to); 
-// определяем список и присваиваем ему адаптер 
-		lvSimple = findViewById(R.id.lvSimple); 
-		lvSimple.setAdapter(sAdapter);}
+		{lvSimple = findViewById(R.id.lvSimple); 
+		lvSimple.setAdapter(fs.sAdapter(o_dir, files));}
 		
 		lvSimple.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 				@Override
@@ -96,30 +59,34 @@ public class MainActivity extends Activity
 				{
 					// по позиции получаем выбранный элемент
 					NSDir = files[position];
+					dir= new File(o_dir+ "/"+ NSDir);
 					newDir();
 				}
 			});
-	}
-				
-        
-		
-    
-public void newDir(){
-		Intent intent = new Intent(this, MainActivity.class);
-		intent.putExtra("dir", dir.toString());
-		intent.putExtra("file", NSDir);
-		startActivity(intent); }
-public void up(){
-		files2= o_dir.split("/");
-		for(int i=0; i<files2.length-2;i++){
-			old_dir=old_dir +files2[i]+ "/";
 		}
-		Intent intent = new Intent(this, MainActivity.class);
-		
-		intent.putExtra("dir", old_dir+files2[files2.length-2]);
-		intent.putExtra("file", files2[files2.length-1]);
-	startActivity(intent);
-}
+				
+public void newDir(){
+		files=dir.list();
+		o_dir=dir.getAbsolutePath();
+	if (files != null)
+	{lvSimple.setAdapter(fs.sAdapter(o_dir, files));}
+	but_up.setVisibility(View.VISIBLE);
+	dir_tv.setText(o_dir);}
+	
+	public void up(View view){
+		files= o_dir.split("/");
+		o_dir=files[0];
+		for(int i=1; i<files.length-1;i++){
+			o_dir=o_dir+"/"+ files[i];}
+		String root= Environment.getExternalStorageDirectory().getPath();
+		if (o_dir== root){
+			but_up.setVisibility(View.INVISIBLE);}
+			dir= new File(o_dir);
+			files= dir.list();
+		if (files != null)
+		{lvSimple.setAdapter(fs.sAdapter(o_dir, files));}
+		dir_tv.setText(o_dir);
+		}
 	
 }
 	
