@@ -11,11 +11,12 @@ import android.widget.AdapterView;
 import android.content.Intent;
 import android.widget.ListView; 
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList; 
 import java.util.HashMap; 
 import java.util.Map; 
-
+import java.io.IOException;
 import java.io.File;
 import java.nio.file.*;
 import android.widget.*;
@@ -31,7 +32,7 @@ public class MainActivity extends Activity
 	String[] files;
 	String NSDir;
 	private FileShooser fs;
-	
+	private FileManager fm;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,8 +86,30 @@ public void newDir(){
 			files= dir.list();
 		if (files != null)
 		{lvSimple.setAdapter(fs.sAdapter(o_dir, files));}
-		dir_tv.setText(o_dir);
-		}
+		dir_tv.setText(o_dir);}
+	
+	public void CheckDir(View view){
+		fm= new FileManager(this);
+		try{
+			fm.writeToFile("dirs.txt", o_dir+ "&");
+			Toast.makeText(getApplicationContext(), 
+			"Дирректория сохранена", Toast.LENGHT_LONG).show();}
+		catch (IOException e) {
+			e.printStackTrace();}
+	}
+
+	public void OpList(View view){
+		fm= new FileManager(this);
+		String l_dir;
+		try{
+			l_dir= fm.readFromFile("dirs.txt");
+		}catch (IOException e){
+			e.printStackTrace();}
+	//записать список Dirs в LV
+
+	}
+
+
 	
 }
 	
