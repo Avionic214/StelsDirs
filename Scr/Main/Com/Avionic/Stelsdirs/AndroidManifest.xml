@@ -24,7 +24,10 @@
             </intent-filter>
         </activity>
 		<activity 
-			android:name="NewDir"> 
+			android:name="DirsList"> 
+		</activity>
+		<activity 
+			android:name="Pass"> 
 		</activity>
     </application>
 
