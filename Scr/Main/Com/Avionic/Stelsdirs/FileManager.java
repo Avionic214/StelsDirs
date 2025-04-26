@@ -57,7 +57,7 @@ public class FileManager {
             reader = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
+                content.append(line);
             }
         } finally {
             if (reader != null) {
@@ -71,15 +71,17 @@ public class FileManager {
         return content.toString();
     }
 
-    /**
-     * Метод для удаления файла
-     *
-     * @param fileName Имя файла
-     * @return true, если файл успешно удален, иначе false
-     */
     public String pathFile(String fileName) {
         File file = new File(context.getFilesDir(), fileName);
-        return file.getAbsolutePath();
+        return file.getAbsolutePath();}
+	/* Метод для удаления файла
+	*
+	* @param fileName Имя файла
+	* @return true, если файл успешно удален, иначе false
+	*/
+    public boolean deleteFile(String fileName) {
+        File file = new File(context.getFilesDir(), fileName);
+        return file.delete();
     }
 }
 
