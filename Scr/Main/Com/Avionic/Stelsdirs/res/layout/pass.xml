@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center">
+
+	<TableRow>
+		<TextView
+			android:id="@+id/passTV"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+	</TableRow>
+	
+	<TableRow>
+
+		<Button
+			android:id="@+id/but_1"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="1"/>
+
+		<Button
+			android:id="@+id/but_2"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="2"/>
+
+		<Button
+			android:id="@+id/but_3"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="3"/>
+
+	</TableRow>
+
+	<TableRow>
+
+		<Button
+			android:id="@+id/but_4"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="4"/>
+
+		<Button
+			android:id="@+id/but_5"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="5"/>
+
+		<Button
+			android:id="@+id/but_6"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="6"/>
+
+	</TableRow>
+
+	<TableRow>
+
+		<Button
+			android:id="@+id/but_7"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="7"/>
+
+		<Button
+			android:id="@+id/but_8"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="8"/>
+
+		<Button
+			android:id="@+id/but_9"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="9"/>
+
+	</TableRow>
+
+	<TableRow>
+
+		<Button
+			android:id="@+id/but_clr"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="clr"/>
+
+		<Button
+			android:id="@+id/but_0"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="0"/>
+
+		<Button
+			android:id="@+id/but_ok"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_weight="1"
+			android:text="ok"/>
+
+	</TableRow>
+
+</TableLayout>
+

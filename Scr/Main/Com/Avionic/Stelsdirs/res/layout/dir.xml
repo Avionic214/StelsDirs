@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/Tv"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="5dp"/>
+
+	<ListView
+		android:id="@+id/dir"
+		android:choiceMode="multipleChoice"
+		android:layout_width="match_parent"
+		android:layout_height="250dp">
+
+	</ListView>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="horizontal"
+		android:gravity="right">
+
+		<Button
+			android:id="@+id/Sbut"
+			android:layout_width="120dp"
+			android:layout_height="50dp"
+			android:text="ok"
+			android:padding="5dp"
+			android:onClick="delDir"/>
+
+		<Button
+			android:id="@+id/Cbut"
+			android:layout_width="120dp"
+			android:layout_height="50dp"
+			android:text="cancel"
+			android:padding="5dp"
+			android:onClick="cancel"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+
